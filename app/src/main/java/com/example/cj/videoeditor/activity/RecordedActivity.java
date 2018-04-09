@@ -2,9 +2,13 @@ package com.example.cj.videoeditor.activity;
 
 <<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/activity/RecordedActivity.java
 <<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/activity/RecordedActivity.java
+<<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/activity/RecordedActivity.java
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Point;
+=======
+import android.app.Activity;
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/activity/RecorderedActivity.java
 =======
 import android.app.Activity;
 >>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/activity/RecorderedActivity.java
@@ -22,9 +26,12 @@ import com.example.cj.videoeditor.Constants;
 import com.example.cj.videoeditor.R;
 <<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/activity/RecordedActivity.java
 <<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/activity/RecordedActivity.java
+<<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/activity/RecordedActivity.java
 import com.example.cj.videoeditor.camera.SensorControler;
 import com.example.cj.videoeditor.gpufilter.SlideGpuFilterGroup;
 import com.example.cj.videoeditor.gpufilter.helper.MagicFilterType;
+=======
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/activity/RecorderedActivity.java
 =======
 >>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/activity/RecorderedActivity.java
 =======
@@ -43,6 +50,7 @@ import java.util.concurrent.Executors;
 
 <<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/activity/RecordedActivity.java
 <<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/activity/RecordedActivity.java
+<<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/activity/RecordedActivity.java
 public class RecordedActivity extends BaseActivity implements View.OnClickListener, View.OnTouchListener, SensorControler.CameraFocusListener, SlideGpuFilterGroup.OnFilterChangeListener {
 
     private CameraView mCameraView;
@@ -52,6 +60,13 @@ public class RecordedActivity extends BaseActivity implements View.OnClickListen
     private ImageView mFilterBtn;
     private ImageView mCameraChange;
     private static final int maxTime = 20000;//最长录制20s
+=======
+public class RecorderedActivity extends Activity implements View.OnClickListener {
+
+    private CameraView mCameraView;
+    private CircularProgressView mCapture;
+    private static final int maxTime = 2000;//最长录制20s
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/activity/RecorderedActivity.java
 =======
 public class RecorderedActivity extends Activity implements View.OnClickListener {
 
@@ -87,6 +102,7 @@ public class RecorderedActivity extends Activity implements View.OnClickListener
     private void initView() {
         mCameraView = (CameraView) findViewById(R.id.camera_view);
         mCapture = (CircularProgressView) findViewById(R.id.mCapture);
+<<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/activity/RecordedActivity.java
 <<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/activity/RecordedActivity.java
 <<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/activity/RecordedActivity.java
         mFocus = (FocusImageView) findViewById(R.id.focusImageView);
@@ -133,6 +149,11 @@ public class RecorderedActivity extends Activity implements View.OnClickListener
             } else {
                 //聚焦失败显示的图片
                 mFocus.onFocusFailed();
+=======
+        mCapture.setTotal(maxTime);
+        mCapture.setOnClickListener(this);
+    }
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/activity/RecorderedActivity.java
 =======
         mCapture.setTotal(maxTime);
         mCapture.setOnClickListener(this);

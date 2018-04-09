@@ -12,6 +12,7 @@
     </style>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <declare-styleable name="FocusImageView">
         <attr name="focus_focusing_id" format="integer" />
         <attr name="focus_success_id" format="integer" />
@@ -30,6 +31,8 @@
         <item name="android:windowSoftInputMode">stateHidden|adjustResize</item>
     </style>
 =======
+=======
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦
 =======
 >>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦
 

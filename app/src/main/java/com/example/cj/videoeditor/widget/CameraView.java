@@ -102,6 +102,7 @@ public class CameraView extends GLSurfaceView implements GLSurfaceView.Renderer,
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     /**
      * 每次Activity onResume时被调用,第一次不会打开相机
      */
@@ -124,6 +125,8 @@ public class CameraView extends GLSurfaceView implements GLSurfaceView.Renderer,
     public void onFocus(Point point, Camera.AutoFocusCallback callback){
         mCamera.onFocus(point,callback);
     }
+=======
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦
 =======
 >>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦
 =======

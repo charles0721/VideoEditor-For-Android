@@ -7,3 +7,7 @@
 /build
 /captures
 .externalNativeBuild
+app/src/main/res/values/styles.xml
+app/src/main/java/com/example/cj/videoeditor/activity/RecordedActivity.java
+app/src/main/java/com/example/cj/videoeditor/camera/SensorControler.java
+app/src/main/java/com/example/cj/videoeditor/CameraDrawer.java

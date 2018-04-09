@@ -9,6 +9,7 @@
         android:layout_height="match_parent"/>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -60,6 +61,8 @@
 
     </RelativeLayout>
 
+=======
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦
 =======
 >>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦
 =======
