@@ -11,6 +11,8 @@ import android.view.MotionEvent;
 
 import com.example.cj.videoeditor.R;
 import com.example.cj.videoeditor.filter.AFilter;
+<<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/drawer/CameraDrawer.java
+<<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/drawer/CameraDrawer.java
 import com.example.cj.videoeditor.gpufilter.SlideGpuFilterGroup;
 import com.example.cj.videoeditor.utils.EasyGlUtils;
 import com.example.cj.videoeditor.filter.GroupFilter;
@@ -19,8 +21,12 @@ import com.example.cj.videoeditor.filter.CameraFilter;
 import com.example.cj.videoeditor.filter.ProcessFilter;
 import com.example.cj.videoeditor.filter.WaterMarkFilter;
 import com.example.cj.videoeditor.gpufilter.filter.MagicBeautyFilter;
+=======
+=======
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/CameraDrawer.java
+import com.example.cj.videoeditor.filter.ShowFilter;
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/CameraDrawer.java
 import com.example.cj.videoeditor.record.video.TextureMovieEncoder;
-import com.example.cj.videoeditor.utils.MatrixUtils;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -33,6 +39,8 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class CameraDrawer implements GLSurfaceView.Renderer {
 
+<<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/drawer/CameraDrawer.java
+<<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/drawer/CameraDrawer.java
     private  float[] OM ;
     /**显示画面的filter*/
     private final AFilter showFilter;
@@ -49,6 +57,14 @@ public class CameraDrawer implements GLSurfaceView.Renderer {
     /**多种滤镜切换*/
     private SlideGpuFilterGroup mSlideFilterGroup;
 
+=======
+
+    private final AFilter noFilter;
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/CameraDrawer.java
+=======
+
+    private final AFilter noFilter;
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/CameraDrawer.java
     private SurfaceTexture mSurfaceTextrue;
     /**预览数据的宽高*/
     private int mPreviewWidth=0,mPreviewHeight=0;
@@ -65,15 +81,23 @@ public class CameraDrawer implements GLSurfaceView.Renderer {
     private static final int RECORDING_RESUME=4;
     private static final int RECORDING_PAUSED=5;
     private String savePath;
+<<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/drawer/CameraDrawer.java
+<<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/drawer/CameraDrawer.java
     private int textureID;
     private int[] fFrame = new int[1];
     private int[] fTexture = new int[1];
 
     private float[] SM = new float[16];     //用于显示的变换矩阵
+=======
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/CameraDrawer.java
+=======
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/CameraDrawer.java
 
 
     public CameraDrawer(Resources resources){
         //初始化一个滤镜 也可以叫控制器
+<<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/drawer/CameraDrawer.java
+<<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/drawer/CameraDrawer.java
         showFilter = new NoFilter(resources);
         drawFilter = new CameraFilter(resources);
 
@@ -93,6 +117,12 @@ public class CameraDrawer implements GLSurfaceView.Renderer {
         waterMarkFilter.setWaterMark(BitmapFactory.decodeResource(resources,R.mipmap.watermark));
         waterMarkFilter.setPosition(30,50,0,0);
         addFilter(waterMarkFilter);
+=======
+        noFilter = new ShowFilter(resources);
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/CameraDrawer.java
+=======
+        noFilter = new ShowFilter(resources);
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/CameraDrawer.java
 
         recordingEnabled = false;
    }
@@ -105,8 +135,10 @@ public class CameraDrawer implements GLSurfaceView.Renderer {
 
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
-        textureID = createTextureID();
+        int textureID = createTextureID();
         mSurfaceTextrue = new SurfaceTexture(textureID);
+<<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/drawer/CameraDrawer.java
+<<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/drawer/CameraDrawer.java
 
         drawFilter.create();
         drawFilter.setTextureId(textureID);
@@ -120,6 +152,14 @@ public class CameraDrawer implements GLSurfaceView.Renderer {
         mSlideFilterGroup.init();
 
 
+=======
+        noFilter.create();
+        noFilter.setTextureId(textureID);
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/CameraDrawer.java
+=======
+        noFilter.create();
+        noFilter.setTextureId(textureID);
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/CameraDrawer.java
         if (recordingEnabled){
             recordingStatus = RECORDING_RESUMED;
         } else{
@@ -132,6 +172,8 @@ public class CameraDrawer implements GLSurfaceView.Renderer {
     public void onSurfaceChanged(GL10 gl10, int i, int i1) {
         width = i;
         height = i1;
+<<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/drawer/CameraDrawer.java
+<<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/drawer/CameraDrawer.java
         //清除遗留的
         GLES20.glDeleteFramebuffers(1, fFrame, 0);
         GLES20.glDeleteTextures(1, fTexture, 0);
@@ -159,6 +201,12 @@ public class CameraDrawer implements GLSurfaceView.Renderer {
 
         MatrixUtils.getShowMatrix(SM,mPreviewWidth, mPreviewHeight, width, height);
         showFilter.setMatrix(SM);
+=======
+        GLES20.glViewport(0,0,width,height);
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/CameraDrawer.java
+=======
+        GLES20.glViewport(0,0,width,height);
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/CameraDrawer.java
     }
 
     @Override
@@ -166,6 +214,8 @@ public class CameraDrawer implements GLSurfaceView.Renderer {
         /**更新界面中的数据*/
         mSurfaceTextrue.updateTexImage();
 
+<<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/drawer/CameraDrawer.java
+<<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/drawer/CameraDrawer.java
         EasyGlUtils.bindFrameTexture(fFrame[0],fTexture[0]);
         GLES20.glViewport(0,0,mPreviewWidth,mPreviewHeight);
         drawFilter.draw();
@@ -190,6 +240,10 @@ public class CameraDrawer implements GLSurfaceView.Renderer {
         mAfFilter.draw();
 
 
+=======
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/CameraDrawer.java
+=======
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/CameraDrawer.java
         if (recordingEnabled){
             /**说明是录制状态*/
             switch (recordingStatus){
@@ -219,6 +273,14 @@ public class CameraDrawer implements GLSurfaceView.Renderer {
                     videoEncoder.resumeRecording();
                     recordingStatus=RECORDING_ON;
                     break;
+<<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/drawer/CameraDrawer.java
+<<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/drawer/CameraDrawer.java
+=======
+=======
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/CameraDrawer.java
+                case RECORDING_PAUSED: videoEncoder.pauseRecording();
+                    recordingStatus=RECORDING_PAUSED;
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/CameraDrawer.java
 
                 default:
                     throw new RuntimeException("unknown recording status "+recordingStatus);
@@ -240,6 +302,8 @@ public class CameraDrawer implements GLSurfaceView.Renderer {
                     throw new RuntimeException("unknown recording status " + recordingStatus);
             }
         }
+<<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/drawer/CameraDrawer.java
+<<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/drawer/CameraDrawer.java
         /**绘制显示的filter*/
         GLES20.glViewport(0,0,width,height);
         showFilter.setTextureId(mAfFilter.getOutputTexture());
@@ -254,6 +318,12 @@ public class CameraDrawer implements GLSurfaceView.Renderer {
      * */
     public void onTouch(MotionEvent event){
         mSlideFilterGroup.onTouchEvent(event);
+=======
+        noFilter.draw();
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/CameraDrawer.java
+=======
+        noFilter.draw();
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/CameraDrawer.java
     }
     /**
      * 滤镜切换的事件监听
@@ -269,6 +339,8 @@ public class CameraDrawer implements GLSurfaceView.Renderer {
             mPreviewHeight = height;
         }
     }
+<<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/drawer/CameraDrawer.java
+<<<<<<< HEAD:app/src/main/java/com/example/cj/videoeditor/drawer/CameraDrawer.java
     /**提供修改美白等级的接口*/
     public void changeBeautyLevel(int level){
         mBeautyFilter.setBeautyLevel(level);
@@ -279,6 +351,16 @@ public class CameraDrawer implements GLSurfaceView.Renderer {
     /**根据摄像头设置纹理映射坐标*/
     public void setCameraId(int id) {
         drawFilter.setFlag(id);
+=======
+    //根据摄像头设置纹理映射坐标
+    public void setCameraId(int id) {
+        noFilter.setFlag(id);
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/CameraDrawer.java
+=======
+    //根据摄像头设置纹理映射坐标
+    public void setCameraId(int id) {
+        noFilter.setFlag(id);
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦:app/src/main/java/com/example/cj/videoeditor/CameraDrawer.java
     }
     public void startRecord() {
         recordingEnabled=true;
@@ -333,15 +415,5 @@ public class CameraDrawer implements GLSurfaceView.Renderer {
         GLES20.glTexParameteri(GLES11Ext.GL_TEXTURE_EXTERNAL_OES,
                 GL10.GL_TEXTURE_WRAP_T, GL10.GL_CLAMP_TO_EDGE);
         return texture[0];
-    }
-    public  void useTexParameter(){
-        //设置缩小过滤为使用纹理中坐标最接近的一个像素的颜色作为需要绘制的像素颜色
-        GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_NEAREST);
-        //设置放大过滤为使用纹理中坐标最接近的若干个颜色，通过加权平均算法得到需要绘制的像素颜色
-        GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);
-        //设置环绕方向S，截取纹理坐标到[1/2n,1-1/2n]。将导致永远不会与border融合
-        GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S, GLES20.GL_CLAMP_TO_EDGE);
-        //设置环绕方向T，截取纹理坐标到[1/2n,1-1/2n]。将导致永远不会与border融合
-        GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T, GLES20.GL_CLAMP_TO_EDGE);
     }
 }

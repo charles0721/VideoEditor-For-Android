@@ -8,9 +8,17 @@ import android.opengl.GLSurfaceView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
+<<<<<<< HEAD
 import com.example.cj.videoeditor.drawer.CameraDrawer;
 import com.example.cj.videoeditor.camera.CameraController;
 import com.example.cj.videoeditor.gpufilter.SlideGpuFilterGroup;
+=======
+import com.example.cj.videoeditor.CameraDrawer;
+import com.example.cj.videoeditor.camera.CameraController;
+
+import java.io.IOException;
+import java.util.List;
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -92,6 +100,8 @@ public class CameraView extends GLSurfaceView implements GLSurfaceView.Renderer,
             mCameraDrawer.onDrawFrame(gl);
         }
     }
+<<<<<<< HEAD
+<<<<<<< HEAD
     /**
      * 每次Activity onResume时被调用,第一次不会打开相机
      */
@@ -114,6 +124,10 @@ public class CameraView extends GLSurfaceView implements GLSurfaceView.Renderer,
     public void onFocus(Point point, Camera.AutoFocusCallback callback){
         mCamera.onFocus(point,callback);
     }
+=======
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦
+=======
+>>>>>>> parent of f6b334a... 实现视频录制，断点续录和摄像头对焦
 
     public int getCameraId(){
         return cameraId;

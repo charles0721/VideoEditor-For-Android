@@ -28,8 +28,6 @@ import android.util.Log;
 import com.example.cj.videoeditor.MyApplication;
 import com.example.cj.videoeditor.filter.AFilter;
 import com.example.cj.videoeditor.filter.NoFilter;
-import com.example.cj.videoeditor.gpufilter.basefilter.GPUImageFilter;
-import com.example.cj.videoeditor.gpufilter.basefilter.MagicCameraInputFilter;
 import com.example.cj.videoeditor.record.gles.EglCore;
 
 import java.io.IOException;
@@ -77,7 +75,7 @@ public class TextureMovieEncoder implements Runnable {
     // ----- accessed exclusively by encoder thread -----
     private WindowSurface mInputWindowSurface;
     private EglCore mEglCore;
-    private MagicCameraInputFilter mInput;
+//    private MagicCameraInputFilter mInput;
     private int mTextureId;
 
     private VideoEncoderCore mVideoEncoder;
@@ -88,7 +86,7 @@ public class TextureMovieEncoder implements Runnable {
     private Object mReadyFence = new Object();      // guards ready/running
     private boolean mReady;
     private boolean mRunning;
-    private GPUImageFilter filter;
+//    private GPUImageFilter filter;
     private FloatBuffer gLCubeBuffer;
     private FloatBuffer gLTextureBuffer;
     private long baseTimeStamp=-1;//第一帧的时间戳
@@ -347,7 +345,12 @@ public class TextureMovieEncoder implements Runnable {
     private void handleFrameAvailable(float[] transform, long timestampNanos) {
         if (VERBOSE) Log.d(TAG, "handleFrameAvailable tr=" + transform);
         mVideoEncoder.drainEncoder(false);
-        Log.e("hero","---setTextureId=="+mTextureId);
+//        mInput.setTextureTransformMatrix(transform);
+//        if(filter == null) {
+//            mInput.onDrawFrame(mTextureId, gLCubeBuffer, gLTextureBuffer);
+//        }else {
+//            filter.onDrawFrame(mTextureId/*, gLCubeBuffer, gLTextureBuffer*/);
+//        }
         mShowFilter.setTextureId(mTextureId);
         mShowFilter.draw();
         if(baseTimeStamp==-1){
@@ -401,7 +404,7 @@ public class TextureMovieEncoder implements Runnable {
 
         // Release the EGLSurface and EGLContext.
         mInputWindowSurface.releaseEglSurface();
-        mInput.destroy();
+//        mInput.destroy();
         mEglCore.release();
 
         // Create a new EGLContext and recreate the window surface.
@@ -410,14 +413,14 @@ public class TextureMovieEncoder implements Runnable {
         mInputWindowSurface.makeCurrent();
 
         // Create new programs and such for the new context.
-        mInput = new MagicCameraInputFilter();
-        mInput.init();
-        filter =null;
-        if(filter != null){
-            filter.init();
-            filter.onInputSizeChanged(mPreviewWidth, mPreviewHeight);
-            filter.onDisplaySizeChanged(mVideoWidth, mVideoHeight);
-        }
+//        mInput = new MagicCameraInputFilter();
+//        mInput.init();
+//        filter = MagicFilterFactory.initFilters(type);
+//        if(filter != null){
+//            filter.init();
+//            filter.onInputSizeChanged(mPreviewWidth, mPreviewHeight);
+//            filter.onDisplaySizeChanged(mVideoWidth, mVideoHeight);
+//        }
     }
 
     private void prepareEncoder(EGLContext sharedContext, int width, int height, int bitRate,
@@ -433,14 +436,14 @@ public class TextureMovieEncoder implements Runnable {
         mInputWindowSurface = new WindowSurface(mEglCore, mVideoEncoder.getInputSurface(), true);
         mInputWindowSurface.makeCurrent();
 
-        mInput = new MagicCameraInputFilter();
-        mInput.init();
-        filter = null;
-        if(filter != null){
-            filter.init();
-            filter.onInputSizeChanged(mPreviewWidth, mPreviewHeight);
-            filter.onDisplaySizeChanged(mVideoWidth, mVideoHeight);
-        }
+//        mInput = new MagicCameraInputFilter();
+//        mInput.init();
+//        filter = MagicFilterFactory.initFilters(type);
+//        if(filter != null){
+//            filter.init();
+//            filter.onInputSizeChanged(mPreviewWidth, mPreviewHeight);
+//            filter.onDisplaySizeChanged(mVideoWidth, mVideoHeight);
+//        }
         mShowFilter.create();
         baseTimeStamp=-1;
     }
@@ -451,19 +454,19 @@ public class TextureMovieEncoder implements Runnable {
             mInputWindowSurface.release();
             mInputWindowSurface = null;
         }
-        if (mInput != null) {
-            mInput.destroy();
-            mInput = null;
-        }
+//        if (mInput != null) {
+//            mInput.destroy();
+//            mInput = null;
+//        }
         if (mEglCore != null) {
             mEglCore.release();
             mEglCore = null;
         }
-        if(filter != null){
-            filter.destroy();
-            filter = null;
+//        if(filter != null){
+//            filter.destroy();
+//            filter = null;
 //            type = MagicFilterType.NONE;
-        }
+//        }
     }
 //    private MagicFilterType type = MagicFilterType.NONE;
     private AFilter mShowFilter=new NoFilter(MyApplication.getContext().getResources());
